@@ -1,0 +1,74 @@
+{% extends "main.j2" %}
+
+
+{% block title %}
+Households Inventories - Edit
+{% endblock %}
+
+
+{% block heading %}
+Households Inventories - Edit Selection
+{% endblock %}
+
+
+{% block content %}
+<!-- View household inventory being edited -->
+<table>
+<thead>
+<tr>
+<!-- Get table headers -->
+{% for house in households_inventories %}
+    {% for key in households_inventories[0].keys() %}
+        <th>{{ key }}</th>
+    {% endfor %}
+{% endfor %}
+</tr>
+</thead>
+
+<tbody>
+<!-- Get table elements -->
+{% for attribute in households_inventories %}
+<tr>
+    {% for key in attribute.keys() %}
+        <td>{{attribute[key]}}</td>
+    {% endfor %}
+</tr>
+</tbody>
+</table>
+
+<br />
+
+<!-- Form to edit household inventory selection -->
+<form method="POST">
+<fieldset>
+<legend>Edit a Household Inventory</legend>
+<div class='form-group'>
+<span class="border"></span>
+
+<label>Amount left
+    <select class="form-control" name="amount_left" required>
+    <option value="">--Select--</option>
+{% endfor %}
+    <option value="Empty">Empty</option>
+    <option value="Running Low">Running Low</option>
+    <option value="Still Plenty">Still Plenty</option>
+    <option value="Fully Stocked">Fully Stocked</option>
+    </select>
+</label>
+ 
+<div class="custom-control custom-radio">
+  <input class="custom-control-input" type="radio" id="restock_status1" name="restock_status" value="1">
+    <label class="custom-control-label" for="restock_status1">Restock</label>
+</div>
+<div class="custom-control custom-radio">
+  <input class="custom-control-input" type="radio" id="restock_status2" name="restock_status" value="0">
+    <label class="custom-control-label" for="restock_status2">Currently Stocked</label>
+</div>
+
+</fieldset>
+<button class="btn btn-primary" type="submit" name="Edit_Households_Inventories" value="Edit a Household Inventory">Submit</button>
+<a href='{{url_for('view_households_inventories.households_inventories')}}'><input class="btn btn-primary" type="button" name="Cancel" value="Cancel"/></a>
+</div>
+</form>
+
+{% endblock %}

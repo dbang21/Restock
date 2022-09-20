@@ -1,0 +1,79 @@
+{% extends "main.j2" %}
+
+
+{% block title %}
+Households Members - Edit
+{% endblock %}
+
+
+{% block heading %}
+Households Members - Edit Selection
+{% endblock %}
+
+
+{% block content %}
+<!-- View household member being edited -->
+<table>
+<thead>
+<tr>
+<!-- Get table headers -->
+{% for member in households_members %}
+    {% for key in households_members[0].keys() %}
+        <th>{{ key }}</th>
+    {% endfor %}
+{% endfor %}
+</tr>
+</thead>
+
+<tbody>
+<!-- Get table elements -->
+{% for attribute in households_members %}
+<tr>
+    {% for key in attribute.keys() %}
+        <td>{{attribute[key]}}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<br />
+
+<!-- Form to edit household member selection -->
+<form method="POST">
+<fieldset>
+<legend>Edit a Household Member</legend>
+<div class='form-group'>
+<span class="border"></span>
+
+<label>Name
+<div>
+    <input type="text" class="form-control" name="name" value="{{ households_members[0]["name"] }}" required=required>
+</div>
+</label>
+
+<label>Household
+<div>
+    <select class="form-control" name="id_household">
+    <option value="">--Select--(Optional)</option>
+    {% for household in household_dropdown %}
+    <option value="{{ household.id_household }}">{{ household.name }}</option>
+    {% endfor %}
+    </select>
+</div>
+</label>    
+
+<div class="custom-control custom-radio">
+  <input class="custom-control-input" type="radio" id="runner_status1" name="runner_status" value="1" required>
+    <label class="custom-control-label" for="runner_status1">Dedicated Runner</label>
+</div>
+<div class="custom-control custom-radio">
+  <input class="custom-control-input" type="radio" id="runner_status2" name="runner_status" value="0" required>
+    <label class="custom-control-label" for="runner_status2">Not Runner</label>
+</div>
+
+</fieldset>
+<button class="btn btn-primary" type="submit" name="Edit_Households_Members" value="Edit Household Member">Submit</button>
+<a href='{{url_for('view_households_members.households_members')}}'><input class="btn btn-primary" type="button" name="Cancel" value="Cancel"/></a>
+</form>
+{% endblock %}
