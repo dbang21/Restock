@@ -1,0 +1,30 @@
+1. Github Flask Starter Guide
+  a. Scope: Module
+  b. Date: 04/05/22
+  c. Originality: Copied
+  d. Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
+2. Flask
+  a. Scope: Module
+  b. Date: 04/28/22
+  c. Originality: Based 
+  d. Source URL: https://flask.palletsprojects.com/en/2.1.x/blueprints/ 
+ 3. Heroku/ClearDB
+  a. Scope: db_connector and env
+  b. Date: 05/06/22
+  c. Originality: Based
+  d. Source URL: https://elements.heroku.com/addons/cleardb
+4. Bootstrap
+  a. Scope: Module
+  b. Date: 06/03/22
+  c. Originality: Copied
+  d. Source URL: https://getbootstrap.com/docs/4.0/layout/overview/
+5. FontAwesome
+  a. Scope: Module
+  b. Date: 06/03/22
+  c. Originality: Copied
+  d. Source URL: https://fontawesome.com/icons
+6. W3 Schools
+  a. Scope: Module
+  b. Date: 06/03/22
+  c. Originality: Adapted
+  d. Source URL: https://www.w3schools.com/jsref/met_form_submit.asp
