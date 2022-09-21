@@ -1,0 +1,74 @@
+{% extends "main.j2" %}
+
+
+{% block title %}
+Stores - Edit
+{% endblock %}
+
+
+{% block heading %}
+Stores - Edit Selection
+{% endblock %}
+
+
+{% block content %}
+<!-- View store being edited -->
+<table>
+<thead>
+<tr>
+<!-- Get table headers -->
+{% for store in stores %}
+    {% for key in stores[0].keys() %}
+        <th>{{ key }}</th>
+    {% endfor %}
+{% endfor %}
+</tr>
+</thead>
+
+<tbody>
+<!-- Get table elements -->
+{% for attribute in stores %}
+<tr>
+    {% for key in attribute.keys() %}
+        <td>{{attribute[key]}}</td>
+    {% endfor %}
+</tr>
+</tbody>
+</table>
+{% endfor %}
+
+<br />
+
+<!-- Form to edit store selection -->
+<form method="POST">
+<fieldset>
+<legend>Edit a Store</legend>
+<div class='form-group'>
+<span class="border"></span>
+    <input type="hidden" name="id_store" value="{{request.form['id_store']}}" required="required">
+
+<label>Name
+<br />
+    <input type="text" name="name" value="{{ stores[0]["name"] }}" size="40" maxlength="45" required="required">
+</label>
+
+<br />
+
+<label>Address
+<br />
+    <input type="text" name="address" value="{{ stores[0]["address"] }}" size="40" maxlength="145" required="required">
+</label>
+
+<br />
+
+<label>Hours Open
+<br />
+    <input type="text" name="hours_open" value="{{ stores[0]["hours_open"] }}" size="40" maxlength="45">
+</label>
+</fieldset>
+
+<button class="btn btn-primary" type="submit" name="Edit_Stores" value="Edit Household">Submit</button>
+<a href='{{url_for('view_stores.stores')}}'><input class="btn btn-primary" type="button" name="Cancel" value="Cancel"/></a>
+</div>
+</form>
+{% endblock %}

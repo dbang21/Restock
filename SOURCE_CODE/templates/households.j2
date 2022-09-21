@@ -1,0 +1,72 @@
+{% extends "main.j2" %}
+
+
+{% block title %}
+Households
+{% endblock %}
+
+
+{% block heading %}
+Households
+{% endblock %}
+
+
+{% block content %}
+<table>
+<thead>
+<tr>
+{% if households %}
+    {% for key in households[0].keys() %}
+        <th>{{ key }}</th>
+    {% endfor %}
+        <th>Edit</th>
+{% else %}
+    <p>There are currently no households listed.</p>
+{% endif %}
+</tr>
+</thead>
+
+<tbody>
+{% for attribute in households %}
+<tr>
+    {% for key in attribute.keys() %}
+        <td>{{attribute[key]}}</td>
+    {% endfor %}
+        <td><a href="households-edit/{{attribute.ID}}" /><i class="fa-solid fa-cart-plus" style="color:black"></i></td>
+        <td><a href="households-delete/{{attribute.ID}}" /><i class="fa-solid fa-trash-can" style="color:black"></i></td>
+</tr>
+{% endfor %}
+</table>
+</tbody>
+
+<br />
+
+<!-- Add a Household -->
+<form action="{{url_for('view_households.households')}}" method="POST">
+<fieldset>
+<legend> Add a Household</legend>
+<div class='form-group'>
+<span class="border"></span>
+
+<label>Name
+<br />
+<div>
+    <input type="text" name="name" value="" size="40" maxlength="45" required="required">
+</div>
+</label>
+
+<br />
+
+<label>Address
+<br />
+<div>
+    <input type="text" name="address" value="" size="40" maxlength="145">
+</div>
+</label>
+</fieldset>
+
+<button class="btn btn-primary" type="submit" name="Add_Household" value="Add Household">Add</button>
+</div>
+</form>
+
+{% endblock %}

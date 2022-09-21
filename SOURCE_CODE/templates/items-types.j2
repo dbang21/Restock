@@ -1,0 +1,55 @@
+{% extends "main.j2" %}
+
+
+{% block title %}
+Items Types
+{% endblock %}
+
+
+{% block heading %}
+Items Types
+{% endblock %}
+
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+            {% for key in items_types[0].keys() %}
+                <th>{{ key }}</th>
+            {% endfor %}
+                {# <th>Delete</th> #}
+            <tr>
+        </thead>
+        <tbody>
+        {% for attribute in items_types %}
+            <tr>
+                {% for key in attribute.keys() %}
+                <td>{{attribute[key]}}</td>
+                {% endfor %}
+                {# <td><a href="{{url_for('items_types')}}" />Delete</td>                 #}
+            </tr>
+        {% endfor %}
+    </table>
+    </tbody>
+
+    <br />
+
+<!-- Add an Item Type -->
+<form method="POST">
+<fieldset>
+<legend>Add an Item Type</legend>
+<div class='form-group'>
+<span class="border"></span>
+
+<label>Name
+<div>
+    <input type="text" name="name" size="12" maxlength="45" required="required">
+</div>
+</label>
+</fieldset>
+
+<button class="btn btn-primary" type="submit" name="Add_Items_Types" value="Add an Item Type">Add</button>
+</div>
+</form>
+{% endblock %}

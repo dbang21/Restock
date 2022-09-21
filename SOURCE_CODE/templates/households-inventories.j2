@@ -1,0 +1,112 @@
+{% extends "main.j2" %}
+
+
+{% block title %}
+Households Inventories
+{% endblock %}
+
+
+{% block heading %}
+<!-- Filter function -->
+<form id="View_By_Household" action="{{url_for('view_households_inventories.households_inventories')}}" method="GET">
+<div class='form-group'>
+<legend>View by Household</legend>
+    <select class="form-control" name="household" required onchange="View_By_Household()">
+    <option disabled selected value hidden></option>
+    {% for household in household_dropdown %}
+    <option value="{{ household.id_household }}">{{ household.name }}</option>
+    {% endfor %}
+    </select>
+</div>
+</form>
+<script>
+function View_By_Household() {
+  document.getElementById("View_By_Household").submit();
+}
+</script>
+Households Inventories
+{% endblock %}
+
+
+{% block content %}
+<table>
+<thead>
+<tr>
+<!-- Get table headers -->
+{% if households_inventories %}
+    {% for key in households_inventories[0].keys() %}
+        <th>{{ key }}</th>
+    {% endfor %}
+        <th>Edit</th>
+{% else %}
+    <p>There are currently no households inventories listed.</p>
+{% endif %}
+</tr>
+</thead>
+
+<tbody>
+<!-- Get table elements -->
+{% for attribute in households_inventories %}
+<tr>
+    {% for key in attribute.keys() %}
+        <td>{{attribute[key]}}</td>
+    {% endfor %}
+        <td><a href="households-inventories-edit/{{attribute.ID}}" /><i class="fa-solid fa-cart-plus" style="color:black"></i></td>
+        <td><a href="households-inventories-delete/{{attribute.ID}}" /><i class="fa-solid fa-trash-can" style="color:black"></i></td>
+</tr>
+{% endfor %}
+</table>
+</tbody>
+
+<br />
+
+<!-- Add a Household Inventory -->
+<form action="{{url_for('view_households_inventories.households_inventories')}}" method="POST">
+<fieldset>
+<legend>Add a Household Inventory</legend>
+<div class='form-group'>
+<span class="border"></span>
+
+<label>Household
+    <select class="form-control" name="id_household" required>
+    <option value="">--Select--</option>
+    {% for household in household_dropdown %}
+    <option value="{{ household.id_household }}">{{ household.name }}</option>
+    {% endfor %}
+    </select>
+</label>
+
+<label>Item
+    <select class="form-control" name="id_item" required>
+    <option value="">--Select--</option>
+    {% for item in items_dropdown %}
+    <option value="{{ item.id_item }}">{{ item.name }}</option>
+    {% endfor %}
+    </select>
+</label>
+
+<label>Amount left
+    <select class="form-control" name="amount_left" required>
+    <option value="">--Select--</option>
+    <option value="Empty">Empty</option>
+    <option value="Running Low">Running Low</option>
+    <option value="Still Plenty">Still Plenty</option>
+    <option value="Fully Stocked">Fully Stocked</option>
+    </select>
+</label>
+
+<div class="custom-control custom-radio">
+  <input class="custom-control-input" type="radio" id="restock_status1" name="restock_status" value="1" required>
+    <label class="custom-control-label" for="restock_status1">Restock</label>
+</div>
+<div class="custom-control custom-radio">
+  <input class="custom-control-input" type="radio" id="restock_status2" name="restock_status" value="0" required>
+    <label class="custom-control-label" for="restock_status2">Currently Stocked</label>
+</div>
+</fieldset>
+
+<button class="btn btn-primary" type="submit" name="Add_Households_Inventories" value="Add a Household Inventory">Add</button>
+</div>
+</form>
+
+{% endblock %}

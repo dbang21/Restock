@@ -1,0 +1,71 @@
+{% extends "main.j2" %}
+
+
+{% block title %}
+Households - Edit
+{% endblock %}
+
+
+{% block heading %}
+Households - Edit Selection
+{% endblock %}
+
+
+{% block content %}
+<!-- View household being edited -->
+<table>
+<thead>
+<tr>
+<!-- Get table headers -->
+{% for house in households %}
+    {% for key in households[0].keys() %}
+        <th>{{ key }}</th>
+    {% endfor %}
+{% endfor %}
+</tr>
+</thead>
+
+<tbody>
+<!-- Get table elements -->
+{% for attribute in households %}
+<tr>
+    {% for key in attribute.keys() %}
+        <td>{{attribute[key]}}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<br />
+
+<!-- Form to edit household selection -->
+<form method="POST">
+<fieldset>
+<legend>Edit a Household</legend>
+<div class='form-group'>
+<span class="border"></span>
+    <input type="hidden" name="id_household" value="{{request.form['id_household']}}" required="required">
+
+<label>Name
+<br />
+<div>
+    <input class='form-group' type="text" name="name" value="{{ households[0]["name"] }}" size="40" maxlength="45" required="required">
+</div>
+</label>
+
+<br />
+
+<label>Address
+<br />
+<div>
+    <input class='form-group' type="text" size="40" name="address" value="{{ households[0]["address"] }}" size="12" maxlength="45" required="required">
+</div>
+</label>
+</div>
+
+</fieldset>
+<button class="btn btn-primary" type="submit" name="Edit_Household" value="Edit Household">Submit</button>
+<a href='{{url_for('view_households.households')}}'><input class="btn btn-primary" type="button" name="Cancel" value="Cancel"/></a>
+</form>
+{% endblock %}

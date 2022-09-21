@@ -1,0 +1,77 @@
+{% extends "main.j2" %}
+
+
+{% block title %}
+Stores
+{% endblock %}
+
+
+{% block heading %}
+Stores
+{% endblock %}
+
+
+{% block content %}
+<table>
+<thead>
+<tr>
+<!-- Get table headers -->
+{% if stores %}
+    {% for key in stores[0].keys() %}
+        <th>{{ key }}</th>
+    {% endfor %}
+        <th>Edit</th>
+{% else %}
+    <p>There are currently no stores listed.</p>
+{% endif %}
+</tr>
+</thead>
+
+<tbody>
+<!-- Get table elements -->
+{% for attribute in stores %}
+<tr>
+    {% for key in attribute.keys() %}
+        <td>{{attribute[key]}}</td>
+    {% endfor %}
+        <td><a href="stores-edit/{{attribute.ID}}" /><i class="fa-solid fa-cart-plus" style="color:black"></i></td>
+        <td><a href="stores-delete/{{attribute.ID}}" /><i class="fa-solid fa-trash-can" style="color:black"></i></td>
+</tr>
+{% endfor %}
+</table>
+</tbody>
+
+<br />
+
+<!-- Add a Store -->
+<form action="{{url_for('view_stores.stores')}}" method="POST">
+<fieldset>
+<legend>Add a Store</legend>
+<div class='form-group'>
+<span class="border"></span>
+
+<label>Name
+<br />
+    <input type="text" name="name" size="40" maxlength="45" required="required">
+</label>
+
+<br />
+
+<label>Address
+<br />
+    <input type="text" name="address" size="40" maxlength="145" required="required">
+</label>
+
+<br />
+
+<label>Hours Open
+<br />
+    <input type="text" name="hours_open" size="40" maxlength="45">
+</label>
+</fieldset>
+
+<button class="btn btn-primary"  type="submit" name="Add_Stores" value="Add Store">Add</button>
+</div>
+</form>
+
+{% endblock %}
