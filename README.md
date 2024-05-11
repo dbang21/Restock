@@ -1,7 +1,21 @@
 ## Project Outline:
 
-Restock is a full stack web app to keep inventory of household items for multiple households using a Flask backend for CRUD operations on a MySQL database and a Jinja2 frontend for dynamic html pages.
+Restock is a full stack web app for household users to keep inventory of their household items. This project uses a Flask backend for CRUD operations on a MySQL database, Jinja2 frontend for dynamic html pages, and is deployed from Heroku.
 
-Restock keeps track of what Household Items are running low in Households and lets Household Members know exactly what they need to get on their next run to the Stores. Household Members can create, read, update, and delete Household Inventory from a list of Household Items for their home. Each Household Member can view a list of Item Types found in each store in order to find items to restock. Items cannot be found in Stores directly. When it comes time to go for a restocking run, Household Members will need to search through Item Types of the Stores they’re shopping. Item Types are categorized as one of 10 different types such as cleaning supplies, toiletries, and groceries.
+### Restock functionalities:
+&emsp;•  User can view, create, edit, and delete households <br />
+&emsp;•  User can view, create, edit, and delete household members<br />
+&emsp;•  User can view, create, edit, and delete household inventories<br />
+&emsp;•  User can filter household inventories by household<br />
+&emsp;•  User can view, create, and delete household items<br />
+&emsp;•  User can view and add a new item type<br />
+&emsp;•  User can view and add a new store inventory item<br />
+&emsp;•  User can view, create, edit, and delete stores<br />
 
-link: https://projectrestock.herokuapp.com/
+### Website:
+![restock1](https://github.com/dbang21/Restock/assets/86373734/e77f2abd-0d2f-4dba-a620-348942e36010)
+![restock2](https://github.com/dbang21/Restock/assets/86373734/e2212857-5c45-422b-a13c-cde1aef5fd1d)
+![restock3](https://github.com/dbang21/Restock/assets/86373734/1c9ada4b-3b7b-439d-8122-40767bc87bc2)
+
+### Schema:
+<img width="705" alt="Screen Shot 2022-09-21 at 9 59 58 AM" src="https://user-images.githubusercontent.com/86373734/191566416-98845026-9491-498f-b22a-c1f9c644cd98.png">
